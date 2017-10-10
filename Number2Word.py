@@ -59,10 +59,12 @@ def n2w2001(n):
              print "out"
 def realnum2words(n):
      #if n<0:
-       d,i=math.modf(float(n))
-       leni=len(str(i))-3
-       lend=len(str(d))-2
-       d=abs(d)
+       #d,i=math.modf(float(n))
+       #leni=len(str(i))-3
+       #lend=len(str(d))-2
+       #d=abs(d)
+       num=str(float(n))
+       i,d=num.split('.')
        z=abs(int(i))
        if z<=99:
           p=n2w100(z)
@@ -77,25 +79,18 @@ def realnum2words(n):
        else:
           print "Error"
        q=""
-       if n<0:
-       	for t in range(lend-1):
-           
-           d=d*10
-           s=int(d)
-           q=q+" "+n2w100(s)
-           d=d-s
-       
-        return "NEGATIVE"+" "+p +" "+"POINT"+q
+
+       if "0" in d and len(d)==1:
+        return p
        else:
-          for t in range(lend):
-           
-           d=d*10
-           s=int(d)
-           q=q+" "+n2w100(s)
-           d=d-s
-          return p +" "+"POINT"+q
+       	for t in d:
+           q=q+" "+num2words[int(t)]
+        if n<0:
+          return "NEGATIVE"+" "+p +" "+"POINT"+q.upper()
+        else:
+          return p +" "+"POINT"+q.upper()
 
 print realnum2words(1000.67)
-print realnum2words(-1000)
-print realnum2words(-2000)
 print realnum2words(3797.00071)
+print realnum2words(1000)
+print realnum2words(3797)
