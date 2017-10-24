@@ -63,6 +63,7 @@ def realnum2words(n):
        #leni=len(str(i))-3
        #lend=len(str(d))-2
        #d=abs(d)
+       is_neg=True if str(n)[0]=='-' else False
        num=str(float(n))
        i,d=num.split('.')
        z=abs(int(i))
@@ -79,18 +80,18 @@ def realnum2words(n):
        else:
           print "Error"
        q=""
+       if is_neg:
+	  p="NEGATIVE"+" "+p
 
        if "0" in d and len(d)==1:
         return p
        else:
        	for t in d:
            q=q+" "+num2words[int(t)]
-        if n<0:
-          return "NEGATIVE"+" "+p +" "+"POINT"+q.upper()
-        else:
-          return p +" "+"POINT"+q.upper()
+        return p +" "+"POINT"+q.upper()
 
 print realnum2words(1000.67)
-print realnum2words(3797.00071)
-print realnum2words(1000)
+print realnum2words(-3797.00071)
+print realnum2words(-1000)
 print realnum2words(3797)
+print realnum2words(-0.1)
